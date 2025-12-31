@@ -269,6 +269,9 @@ Edit `application.rb`:
    Config.root.join('config', 'database.yml')
  )
 
++# Explicitly establish connection for ActiveRecord 7.x
++ActiveRecord::Base.establish_connection(Config.env.to_sym)
++
  # Load application
  [
    %w(app lib *.rb),
@@ -298,6 +301,7 @@ $ rm Gemfile.lock
 bundle install
 ```
 $ bundle install
+bundle install
 Fetching gem metadata from https://rubygems.org/..........
 Resolving dependencies...
 Fetching rake 13.3.1
@@ -378,6 +382,8 @@ Fetching newrelic_rpm 9.24.0
 Installing newrelic_rpm 9.24.0
 Fetching nio4r 2.7.5
 Installing nio4r 2.7.5 with native extensions
+Fetching ostruct 0.6.3
+Installing ostruct 0.6.3
 Fetching parslet 1.8.2
 Installing parslet 1.8.2
 Fetching pg 1.6.3 (aarch64-linux)
@@ -491,18 +497,18 @@ Installing actionpack 7.2.3
 Fetching active_model_serializers 0.10.16
 Installing active_model_serializers 0.10.16
 Fetching rgeo-activerecord 8.0.0
-Fetching annotate 3.2.0
 Installing rgeo-activerecord 8.0.0
-Installing annotate 3.2.0
+Fetching annotate 3.2.0
 Fetching database_cleaner-active_record 2.2.2
+Installing annotate 3.2.0
 Installing database_cleaner-active_record 2.2.2
 Fetching otr-activerecord 2.6.0
-Installing otr-activerecord 2.6.0
 Fetching activerecord-postgis-adapter 10.0.1
-Fetching database_cleaner 2.1.0
+Installing otr-activerecord 2.6.0
 Installing activerecord-postgis-adapter 10.0.1
+Fetching database_cleaner 2.1.0
 Installing database_cleaner 2.1.0
-Bundle complete! 33 Gemfile dependencies, 104 gems now installed.
+Bundle complete! 34 Gemfile dependencies, 105 gems now installed.
 Use `bundle info [gemname]` to see where a bundled gem is installed.
 2 installed gems you directly depend on are looking for funding.
   Run `bundle fund` for details
@@ -517,8 +523,51 @@ $ bundle fund
   Funding: https://github.com/sponsors/bkeepers
 ```
 
-Those methods moved to `ActiveRecord::Tasks::DatabaseTasks` in Rails 7:
+
+
+Old environment uses TCP:80 health check (just checks if port is open, not HTTP response).
+For the new ALB-based environment, set health check to accept 404:
+
+In EB Console for safecastingest-prd-010:
+- Go to Configuration → Load balancer → Processes
+- Edit default process
+- Set Health check path: /
+- Set HTTP code: 200-404
+
 ```bash
-sed -i '/::ActiveRecord::Base.schema_format = :sql/d' application.rb
-sed -i '/::ActiveRecord::Base.dump_schemas = :all/d' application.rb
+% aws elasticbeanstalk update-environment \
+  --environment-name safecastingest-prd-010 \
+  --option-settings \
+    Namespace=aws:elasticbeanstalk:environment:process:default,OptionName=MatcherHTTPCode,Value=200-404 \
+  --profile safecast --region us-west-2
+
+{
+    "EnvironmentName": "safecastingest-prd-010",
+    "EnvironmentId": "e-xe3uxbdcqm",
+    "ApplicationName": "ingest",
+    "VersionLabel": "ingest_AL2023_Ruby3.4.8",
+    "SolutionStackName": "64bit Amazon Linux 2023 v4.8.1 running Ruby 3.4",
+    "PlatformArn": "arn:aws:elasticbeanstalk:us-west-2::platform/Ruby 3.4 running on 64bit Amazon Linux 2023/4.8.1",
+    "EndpointURL": "awseb--AWSEB-wZ1r5DHHtXyc-1705929904.us-west-2.elb.amazonaws.com",
+    "CNAME": "safecastingest-prd-010.saej7m7pg2.us-west-2.elasticbeanstalk.com",
+    "DateCreated": "2025-12-31T09:14:21.057000+00:00",
+    "DateUpdated": "2025-12-31T11:07:38.606000+00:00",
+    "Status": "Updating",
+    "AbortableOperationInProgress": true,
+    "Health": "Grey",
+    "Tier": {
+        "Name": "WebServer",
+        "Type": "Standard",
+        "Version": "1.0"
+    },
+    "EnvironmentArn": "arn:aws:elasticbeanstalk:us-west-2:985752656544:environment/ingest/safecastingest-prd-010"
+}
+```
+
+```bash
+% aws elasticbeanstalk describe-environments --environment-names safecastingest-prd-010 --query "Environments[0].{Health:Health,HealthStatus:HealthStatus}" --profile safecast --region us-west-2
+{
+    "Health": "Green",
+    "HealthStatus": "Ok"
+}
 ```
