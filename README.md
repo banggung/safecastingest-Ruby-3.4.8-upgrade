@@ -519,6 +519,6 @@ $ bundle fund
 
 Those methods moved to `ActiveRecord::Tasks::DatabaseTasks` in Rails 7:
 ```bash
-sed -i 's/::ActiveRecord::Base.schema_format = :sql/d' application.rb
-sed -i 's/::ActiveRecord::Base.dump_schemas = :all/d' application.rb
+sed -i '/::ActiveRecord::Base.schema_format = :sql/d' application.rb
+sed -i '/::ActiveRecord::Base.dump_schemas = :all/d' application.rb
 ```
