@@ -46,6 +46,7 @@ source 'https://rubygems.org' do
 +  gem 'mutex_m'
 +  gem 'drb'
 +  gem 'base64'
++  gem 'ostruct'
 +
   group :development do
     gem 'rerun'
@@ -257,6 +258,36 @@ Edit `.ebextensions/workers.config`:
 -      fi
 +  01_reload_systemd:
 +    command: systemctl daemon-reload
+```
+
+Edit `application.rb`:
+```diff
+ require_relative 'config/environment'
+
+ # Database connection
+ OTR::ActiveRecord.configure_from_file!(
+   Config.root.join('config', 'database.yml')
+ )
+
+ # Load application
+ [
+   %w(app lib *.rb),
+   %w(config initializers *.rb),
+   %w(config initializers ** *.rb),
+   %w(app models ** *.rb),
+   %w(app models *.rb),
+   %w(app serializers ** *.rb),
+   %w(app serializers *.rb),
+   %w(app api ** *.rb),
+   %w(app api *.rb),
+   %w(app workers batch.rb),
+   %w(app workers *.rb)
+ ].each do |pattern|
+   Dir.glob(Config.root.join(*pattern)).each { |file| require file }
+ end
+-
+-::ActiveRecord::Base.schema_format = :sql
+-::ActiveRecord::Base.dump_schemas = :all
 ```
 
 Delete Gemfile.lock
@@ -486,4 +517,8 @@ $ bundle fund
   Funding: https://github.com/sponsors/bkeepers
 ```
 
-
+Those methods moved to `ActiveRecord::Tasks::DatabaseTasks` in Rails 7:
+```bash
+sed -i 's/::ActiveRecord::Base.schema_format = :sql/d' application.rb
+sed -i 's/::ActiveRecord::Base.dump_schemas = :all/d' application.rb
+```
