@@ -258,3 +258,232 @@ Edit `.ebextensions/workers.config`:
 +  01_reload_systemd:
 +    command: systemctl daemon-reload
 ```
+
+Delete Gemfile.lock
+```bash
+$ rm Gemfile.lock
+```
+
+bundle install
+```
+$ bundle install
+Fetching gem metadata from https://rubygems.org/..........
+Resolving dependencies...
+Fetching rake 13.3.1
+Installing rake 13.3.1
+Fetching base64 0.3.0
+Fetching benchmark 0.5.0
+Installing base64 0.3.0
+Installing benchmark 0.5.0
+Fetching bigdecimal 4.0.1
+Fetching concurrent-ruby 1.3.6
+Installing bigdecimal 4.0.1 with native extensions
+Installing concurrent-ruby 1.3.6
+Fetching connection_pool 3.0.2
+Installing connection_pool 3.0.2
+Fetching drb 2.2.3
+Installing drb 2.2.3
+Fetching logger 1.7.0
+Installing logger 1.7.0
+Fetching prism 1.7.0
+Installing prism 1.7.0 with native extensions
+Fetching securerandom 0.4.1
+Installing securerandom 0.4.1
+Fetching builder 3.3.0
+Installing builder 3.3.0
+Fetching cgi 0.5.1
+Installing cgi 0.5.1 with native extensions
+Fetching erubi 1.13.1
+Installing erubi 1.13.1
+Fetching crass 1.0.6
+Installing crass 1.0.6
+Fetching rack 3.2.4
+Installing rack 3.2.4
+Fetching useragent 0.16.11
+Installing useragent 0.16.11
+Fetching jsonapi-renderer 0.2.2
+Installing jsonapi-renderer 0.2.2
+Fetching timeout 0.6.0
+Installing timeout 0.6.0
+Fetching rgeo 3.0.1
+Installing rgeo 3.0.1 with native extensions
+Fetching amazing_print 2.0.0
+Installing amazing_print 2.0.0
+Fetching aws-eventstream 1.4.0
+Installing aws-eventstream 1.4.0
+Fetching aws-partitions 1.1200.0
+Installing aws-partitions 1.1200.0
+Fetching jmespath 1.6.2
+Installing jmespath 1.6.2
+Fetching coderay 1.1.3
+Installing coderay 1.1.3
+Fetching database_cleaner-core 2.0.1
+Installing database_cleaner-core 2.0.1
+Fetching diff-lcs 1.6.2
+Installing diff-lcs 1.6.2
+Fetching dotenv 3.2.0
+Installing dotenv 3.2.0
+Fetching zeitwerk 2.7.4
+Installing zeitwerk 2.7.4
+Fetching dry-inflector 1.2.0
+Installing dry-inflector 1.2.0
+Fetching uri 1.1.1
+Installing uri 1.1.1
+Fetching json 2.18.0
+Installing json 2.18.0 with native extensions
+Fetching multi_json 1.19.1
+Installing multi_json 1.19.1
+Fetching ffi 1.17.3 (aarch64-linux-gnu)
+Installing ffi 1.17.3 (aarch64-linux-gnu)
+Fetching ruby2_keywords 0.0.5
+Installing ruby2_keywords 0.0.5
+Fetching io-console 0.8.2
+Installing io-console 0.8.2 with native extensions
+Fetching rb-fsevent 0.11.2
+Installing rb-fsevent 0.11.2
+Fetching method_source 1.1.0
+Installing method_source 1.1.0
+Fetching newrelic_rpm 9.24.0
+Installing newrelic_rpm 9.24.0
+Fetching nio4r 2.7.5
+Installing nio4r 2.7.5 with native extensions
+Fetching parslet 1.8.2
+Installing parslet 1.8.2
+Fetching pg 1.6.3 (aarch64-linux)
+Installing pg 1.6.3 (aarch64-linux)
+Fetching rspec-support 3.13.6
+Installing rspec-support 3.13.6
+Fetching thor 1.4.0
+Installing thor 1.4.0
+Fetching i18n 1.14.8
+Installing i18n 1.14.8
+Fetching tzinfo 2.0.6
+Installing tzinfo 2.0.6
+Fetching nokogiri 1.19.0 (aarch64-linux-gnu)
+Installing nokogiri 1.19.0 (aarch64-linux-gnu)
+Fetching rack-session 2.1.1
+Installing rack-session 2.1.1
+Fetching rack-test 2.2.0
+Installing rack-test 2.2.0
+Fetching aws-sigv4 1.12.1
+Installing aws-sigv4 1.12.1
+Fetching dry-core 1.2.0
+Installing dry-core 1.2.0
+Fetching net-http 0.9.1
+Installing net-http 0.9.1
+Fetching rspec-json_matcher 0.2.0
+Installing rspec-json_matcher 0.2.0
+Fetching elasticsearch-api 8.19.2
+Installing elasticsearch-api 8.19.2
+Fetching rb-inotify 0.11.1
+Installing rb-inotify 0.11.1
+Fetching mustermann 3.0.4
+Installing mustermann 3.0.4
+Fetching reline 0.6.3
+Installing reline 0.6.3
+Fetching puma 7.1.0
+Installing puma 7.1.0 with native extensions
+Fetching rison 2.1.0
+Installing rison 2.1.0
+Fetching rspec-core 3.13.6
+Installing rspec-core 3.13.6
+Fetching rspec-expectations 3.13.5
+Installing rspec-expectations 3.13.5
+Fetching rspec-mocks 3.13.7
+Installing rspec-mocks 3.13.7
+Fetching loofah 2.25.0
+Installing loofah 2.25.0
+Fetching aws-sdk-core 3.240.0
+Installing aws-sdk-core 3.240.0
+Fetching dry-configurable 1.3.0
+Installing dry-configurable 1.3.0
+Fetching dry-logic 1.6.0
+Installing dry-logic 1.6.0
+Fetching faraday-net_http 3.4.2
+Installing faraday-net_http 3.4.2
+Fetching listen 3.9.0
+Installing listen 3.9.0
+Fetching mustermann-grape 1.1.0
+Installing mustermann-grape 1.1.0
+Fetching pry 0.16.0
+Installing pry 0.16.0
+Fetching rspec_junit_formatter 0.6.0
+Installing rspec_junit_formatter 0.6.0
+Fetching rspec 3.13.2
+Installing rspec 3.13.2
+Fetching rails-html-sanitizer 1.6.2
+Installing rails-html-sanitizer 1.6.2
+Fetching aws-sdk-elasticbeanstalk 1.96.0
+Installing aws-sdk-elasticbeanstalk 1.96.0
+Fetching aws-sdk-kms 1.118.0
+Installing aws-sdk-kms 1.118.0
+Fetching aws-sdk-sns 1.109.0
+Installing aws-sdk-sns 1.109.0
+Fetching aws-sdk-sqs 1.107.0
+Installing aws-sdk-sqs 1.107.0
+Fetching dry-types 1.7.1
+Installing dry-types 1.7.1
+Fetching faraday 2.14.0
+Installing faraday 2.14.0
+Fetching rerun 0.14.0
+Installing rerun 0.14.0
+Fetching aws-sdk-s3 1.209.0
+Installing aws-sdk-s3 1.209.0
+Fetching elastic-transport 8.4.1
+Installing elastic-transport 8.4.1
+Fetching elasticsearch 8.19.2
+Installing elasticsearch 8.19.2
+Fetching minitest 6.0.1
+Installing minitest 6.0.1
+Fetching activesupport 7.2.3
+Installing activesupport 7.2.3
+Fetching rails-dom-testing 2.3.0
+Fetching activemodel 7.2.3
+Installing rails-dom-testing 2.3.0
+Installing activemodel 7.2.3
+Fetching case_transform 0.2
+Installing case_transform 0.2
+Fetching factory_bot 6.5.6
+Installing factory_bot 6.5.6
+Fetching grape 3.0.1
+Installing grape 3.0.1
+Fetching shoulda-matchers 7.0.1
+Installing shoulda-matchers 7.0.1
+Fetching actionview 7.2.3
+Fetching activerecord 7.2.3
+Installing actionview 7.2.3
+Installing activerecord 7.2.3
+Fetching grape_logging 3.0.0
+Installing grape_logging 3.0.0
+Fetching actionpack 7.2.3
+Installing actionpack 7.2.3
+Fetching active_model_serializers 0.10.16
+Installing active_model_serializers 0.10.16
+Fetching rgeo-activerecord 8.0.0
+Fetching annotate 3.2.0
+Installing rgeo-activerecord 8.0.0
+Installing annotate 3.2.0
+Fetching database_cleaner-active_record 2.2.2
+Installing database_cleaner-active_record 2.2.2
+Fetching otr-activerecord 2.6.0
+Installing otr-activerecord 2.6.0
+Fetching activerecord-postgis-adapter 10.0.1
+Fetching database_cleaner 2.1.0
+Installing activerecord-postgis-adapter 10.0.1
+Installing database_cleaner 2.1.0
+Bundle complete! 33 Gemfile dependencies, 104 gems now installed.
+Use `bundle info [gemname]` to see where a bundled gem is installed.
+2 installed gems you directly depend on are looking for funding.
+  Run `bundle fund` for details
+```
+
+Check funding
+```bash
+$ bundle fund
+* activerecord-postgis-adapter (10.0.1)
+  Funding: https://opencollective.com/rgeo
+* dotenv (3.2.0)
+  Funding: https://github.com/sponsors/bkeepers
+```
+
+
