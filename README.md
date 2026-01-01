@@ -2,44 +2,45 @@
 
 Edit `Gemfile`:
 ```diff
-source 'https://rubygems.org' do
-- # Puma with Ruby 2.6 running on 64bit Amazon Linux/2.11.7
-- ruby '2.6.6'
+ source 'https://rubygems.org' do
+-  # Puma with Ruby 2.6 running on 64bit Amazon Linux/2.11.7
+-  ruby '2.6.6'
 +  # Ruby 3.4 running on 64bit Amazon Linux 2023
-+  ruby '3.4.8'
++  ruby '3.4.7'
 
-  gem 'puma'
-  gem 'rake'
+   gem 'puma'
+   gem 'rake'
++  gem 'benchmark'
 
-  # api
-  gem 'grape'
-  gem 'grape_logging'
-- gem 'actionview', '>= 5.0.7.2'
-- gem 'active_model_serializers'
-+  gem 'actionview', '>= 7.0'
+   # api
+   gem 'grape'
+   gem 'grape_logging'
+-  gem 'actionview', '>= 5.0.7.2'
+-  gem 'active_model_serializers'
++  gem 'actionview', '>= 6.1', '< 7'
 +  gem 'active_model_serializers', '~> 0.10.14'
 
-  # database/orms
-  gem 'pg'
-  gem 'otr-activerecord'
-- gem 'activerecord-postgis-adapter', '>= 5.2.2'
-+  gem 'activerecord-postgis-adapter', '>= 7.0'
+   # database/orms
+   gem 'pg'
+   gem 'otr-activerecord'
+-  gem 'activerecord-postgis-adapter', '>= 5.2.2'
++  gem 'activerecord-postgis-adapter', '~> 6.0'
 
-  # data pipeline
-  gem 'aws-sdk-sns', '~> 1'
-  gem 'aws-sdk-sqs', '~> 1'
-  gem 'aws-sdk-s3', '~> 1'
-- gem 'elasticsearch', '~> 5.0'
+   # data pipeline
+   gem 'aws-sdk-sns', '~> 1'
+   gem 'aws-sdk-sqs', '~> 1'
+   gem 'aws-sdk-s3', '~> 1'
+-  gem 'elasticsearch', '~> 5.0'
 +  gem 'elasticsearch', '~> 8.0'
 
-  gem 'dotenv'
-  gem 'newrelic_rpm'
-  gem 'rison'
-  gem 'thor'
-  gem 'faraday'
+   gem 'dotenv'
+   gem 'newrelic_rpm'
+   gem 'rison'
+   gem 'thor'
+   gem 'faraday'
 
-  # elasticbeanstalk rake task
-  gem 'aws-sdk-elasticbeanstalk'
+   # elasticbeanstalk rake task
+   gem 'aws-sdk-elasticbeanstalk'
 
 +  # Ruby 3.x compatibility
 +  gem 'bigdecimal'
@@ -48,25 +49,25 @@ source 'https://rubygems.org' do
 +  gem 'base64'
 +  gem 'ostruct'
 +
-  group :development do
-    gem 'rerun'
-  end
+   group :development do
+     gem 'rerun'
+   end
 
-  group :test do
-    gem 'database_cleaner'
-    gem 'rack-test'
-    gem 'rspec'
-    gem 'rspec-json_matcher'
-    gem 'rspec_junit_formatter'
-    gem 'shoulda-matchers'
-  end
+   group :test do
+     gem 'database_cleaner'
+     gem 'rack-test'
+     gem 'rspec'
+     gem 'rspec-json_matcher'
+     gem 'rspec_junit_formatter'
+     gem 'shoulda-matchers'
+   end
 
-  group :development, :test do
-    gem 'annotate'
-    gem 'factory_bot'
-    gem 'pry'
-  end
-end
+   group :development, :test do
+     gem 'annotate'
+     gem 'factory_bot'
+     gem 'pry'
+   end
+ end
 ```
 
 
